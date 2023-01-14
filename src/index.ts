@@ -37,8 +37,8 @@ const server = http.createServer((req, res) => {
               data: "well, it's a post",
             }));
             break;
-          };
-        };
+          }
+        }
       } else {
         res.statusCode = 404;
         res.setHeader('Content-type' ,'application/json');

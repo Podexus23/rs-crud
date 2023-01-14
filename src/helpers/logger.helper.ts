@@ -7,7 +7,7 @@ function requestLog(req: IncomingMessage) {
     URL: ${req.url}
     `
   );
-};
+}
 
 export {
   requestLog

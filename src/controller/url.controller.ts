@@ -3,7 +3,7 @@ import { getUser, getUsers } from "../methods/get.methods";
 
 const LINKS = {
   main: '/api/users',
-} 
+}
 
 function urlController (req: IncomingMessage, res: ServerResponse) {
   const address = req.url;

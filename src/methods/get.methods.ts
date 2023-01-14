@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { ServerResponse } from "http";
 import { userData } from "../users/usersData";
 import { validate } from "uuid";
 import { IUser } from "../users/users.interface";
@@ -17,8 +17,7 @@ function getResponse(
 
 
 function getUsers (res: ServerResponse) {
-  getResponse(res, 200, userData)
-  
+  getResponse(res, 200, userData);
 }
 
 function getUser (res: ServerResponse, id: string) {
