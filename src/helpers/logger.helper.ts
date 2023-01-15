@@ -1,9 +1,7 @@
 import { IncomingMessage } from 'http';
+import { stdout } from 'process';
 
 export default function requestLog(req: IncomingMessage) {
-  console.log(
-    `Method: ${req.method}
-    URL: ${req.url}
-    `,
-  );
+  const message = `Method: ${req.method} \nURL: ${req.url}\n`;
+  stdout.write(message);
 }

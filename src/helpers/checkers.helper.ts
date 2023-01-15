@@ -5,17 +5,15 @@ function checkURL(url: string): boolean {
   return false;
 }
 
-function checkNewUserData(data:string): boolean {
+function checkNewUserData(data:string): IUser | false {
   const { userName, age, hobbies }: IUser = JSON.parse(data);
-  console.log(userName, age, hobbies);
   if (
     typeof userName === 'string'
     && typeof age === 'number'
     && (Array.isArray(hobbies) && hobbies.every((item) => typeof item === 'string'))
   ) {
-    return true;
-  }
-  return false;
+    return { userName, age, hobbies };
+  } return false;
 }
 
 export { checkURL, checkNewUserData };
