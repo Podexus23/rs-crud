@@ -16,7 +16,7 @@ export default function updateUser(req: IncomingMessage, res: ServerResponse, id
       req.on('error', (err) => err);
       req.on('data', (chunk) => { newUserData += chunk; });
       req.on('end', () => {
-        const isUser = checkNewUserData(newUserData);
+        const isUser = checkNewUserData(newUserData, res);
         if (isUser) {
           isUser.id = id;
           userData.forEach((elem, i) => {

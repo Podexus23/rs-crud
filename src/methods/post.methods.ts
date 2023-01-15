@@ -5,19 +5,25 @@ import userData from '../users/usersData';
 import { checkNewUserData } from '../helpers/checkers.helper';
 
 export default function postUser(req: IncomingMessage, res: ServerResponse) {
-  let newUser = '';
-  req.setEncoding('utf-8');
+  try {
+    let newUser = '';
+    req.setEncoding('utf-8');
 
-  req.on('error', (err) => err);
-  req.on('data', (chunk) => { newUser += chunk; });
-  req.on('end', () => {
-    const isUser = checkNewUserData(newUser);
-    if (isUser) {
-      isUser.id = v1();
-      userData.push(isUser);
-      sendResponse(res, 201, 'New record created');
-    } else {
-      sendResponse(res, 400, 'Body does not contain required fields');
-    }
-  });
+    req.on('error', (err) => err);
+    req.on('data', (chunk) => { newUser += chunk; });
+    req.on('end', () => {
+      const isUser = checkNewUserData(newUser, res);
+      if (isUser) {
+        isUser.id = v1();
+        userData.push(isUser);
+        sendResponse(res, 201, 'New record created');
+      } else {
+        sendResponse(res, 400, 'Body does not contain required fields');
+      }
+    });
+  } catch {
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify({ message: 'Errors on the server side that occur during the processing of a request' }));
+    res.end();
+  }
 }

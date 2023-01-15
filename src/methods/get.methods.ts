@@ -8,11 +8,17 @@ function getUsers(res: ServerResponse) {
 }
 
 function getUser(res: ServerResponse, id: string) {
-  if (!validate(id)) sendResponse(res, 400, 'sorry wrong ID');
-  if (validate(id)) {
-    const user = userData.find((e) => e.id === id);
-    if (!user) sendResponse(res, 404, 'User not found');
-    if (user) sendResponse(res, 200, user);
+  try {
+    if (!validate(id)) sendResponse(res, 400, 'sorry wrong ID');
+    if (validate(id)) {
+      const user = userData.find((e) => e.id === id);
+      if (!user) sendResponse(res, 404, 'User not found');
+      if (user) sendResponse(res, 200, user);
+    }
+  } catch (error) {
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify({ message: 'Errors on the server side that occur during the processing of a request' }));
+    res.end();
   }
 }
 
