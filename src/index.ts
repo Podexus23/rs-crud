@@ -6,7 +6,7 @@ import urlController from './controller/url.controller';
 
 dotenv.config();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   try {
@@ -21,3 +21,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(port);
 console.log(`Server is working on Port: ${port}`);
+
+export { server, port };
