@@ -16,9 +16,7 @@ function getUser(res: ServerResponse, id: string) {
       if (user) sendResponse(res, 200, user);
     }
   } catch (error) {
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({ message: 'Errors on the server side that occur during the processing of a request' }));
-    res.end();
+    sendResponse(res, 500, 'Errors on the server side that occur during the processing of a request');
   }
 }
 

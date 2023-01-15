@@ -37,8 +37,6 @@ export default function urlController(req: IncomingMessage, res: ServerResponse)
       if (fixedAddress?.includes(LINKS.main) && id) deleteUser(res, id);
     }
   } catch {
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({ message: 'Errors on the server side that occur during the processing of a request' }));
-    res.end();
+    sendResponse(res, 500, 'Errors on the server side that occur during the processing of a request');
   }
 }

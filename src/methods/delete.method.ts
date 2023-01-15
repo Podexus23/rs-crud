@@ -16,8 +16,6 @@ export default function deleteUser(res: ServerResponse, id: string) {
       }
     }
   } catch (error) {
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({ message: 'Errors on the server side that occur during the processing of a request' }));
-    res.end();
+    sendResponse(res, 500, 'Errors on the server side that occur during the processing of a request');
   }
 }
