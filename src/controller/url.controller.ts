@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { getUser, getUsers } from '../methods/get.methods';
 import postUser from '../methods/post.methods';
 import sendResponse from '../helpers/response.helper';
+import updateUser from '../methods/put.method';
 
 const LINKS = {
   main: '/api/users',
@@ -24,5 +25,9 @@ export default function urlController(req: IncomingMessage, res: ServerResponse)
 
   if (req.method === 'POST') {
     if ((fixedAddress === LINKS.main)) postUser(req, res);
+  }
+
+  if (req.method === 'PUT') {
+    if (fixedAddress?.includes(LINKS.main) && id) updateUser(req, res, id);
   }
 }
