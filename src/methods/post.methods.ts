@@ -16,9 +16,9 @@ export default function postUser(req: IncomingMessage, res: ServerResponse) {
       if (isUser) {
         isUser.id = v1();
         userData.push(isUser);
-        sendResponse(res, 201, 'New record created');
+        sendResponse(res, 201, isUser);
       } else {
-        sendResponse(res, 400, 'Body does not contain required fields');
+        sendResponse(res, 400, 'Body does not contain required fields or type is wrong');
       }
     });
   } catch {

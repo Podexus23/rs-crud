@@ -8,13 +8,13 @@ function checkURL(url: string): boolean {
 
 function checkNewUserData(data:string, res?: ServerResponse): IUser | false {
   try {
-    const { userName, age, hobbies }: IUser = JSON.parse(data);
+    const { username, age, hobbies }: IUser = JSON.parse(data);
     if (
-      typeof userName === 'string'
+      typeof username === 'string'
       && typeof age === 'number'
       && (Array.isArray(hobbies) && hobbies.every((item) => typeof item === 'string'))
     ) {
-      return { userName, age, hobbies };
+      return { username, age, hobbies };
     } return false;
   } catch (error) {
     res?.writeHead(500, { 'Content-Type': 'application/json' });

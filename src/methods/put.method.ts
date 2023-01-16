@@ -23,9 +23,9 @@ export default function updateUser(req: IncomingMessage, res: ServerResponse, id
             userData.forEach((elem, i) => {
               if (elem.id === id) userData[i] = isUser;
             });
-            sendResponse(res, 200, 'User info updated');
+            sendResponse(res, 200, isUser);
           } else {
-            sendResponse(res, 400, 'Body does not contain required fields');
+            sendResponse(res, 400, 'Body does not contain required fields or type is wrong');
           }
         });
       }
